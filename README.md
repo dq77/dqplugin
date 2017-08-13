@@ -6,7 +6,7 @@
 ```  
     var date1 = new Date("sth").format("yyyy-MM-dd");
 ```
-##### 其他参数请参阅[详情页](https://github.com/dq77/plug-in/tree/master/format-date)
+#### 其他参数请参阅[详情页](https://github.com/dq77/plug-in/tree/master/format-date)
 --------
 
 ### format-date
@@ -14,5 +14,5 @@
 ```  
     var date1 = new Date("sth").format("yyyy-MM-dd");
 ```
-##### 其他参数请参阅[详情页](https://github.com/dq77/plug-in/tree/master/format-date)
+#### 其他参数请参阅[详情页](https://github.com/dq77/plug-in/tree/master/format-date)
 --------
