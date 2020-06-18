@@ -42,3 +42,15 @@
     https://fakeimg.pl/166x188/4164ff/00a4ff/
 ```
 --------
+
+### 导入导出Excel
+#### 基于xlsx.js
+```  
+    // 导出
+    exportExcel(json,'订单.xlsx')
+
+    // 导入
+    readWorkbookFromLocalFile( file, this.readFile )
+```
+#### 使用方法请参阅[详情页](https://github.com/dq77/plug-in/tree/master/xlsx)
+--------
