@@ -35,10 +35,9 @@
 ```
 #### 必应背景图片地址
 ```  
-    http://cdn.mrabit.com/1920.2020-11-02.jpg
-    https://api.bingdou.net/pic/bing/
-    // 或者
-    https://www.bing.com/th?id=OHR.Havasupai_ROW0645721076_1920x1080.jpg&rf=LaDigue_1920x1080.jpg
+    https://api.dujin.org/bing/1920.php // css中使用 固定url获取每日图片
+    http://cdn.mrabit.com/1920.2020-11-02.jpg // JS中使用 可变使用时期
+    https://api.bingdou.net/pic/bing/ // 每次随机图片 刷新即变
 ```
 #### 图片占位符生成地址
 ```  
