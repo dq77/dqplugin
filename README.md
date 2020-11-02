@@ -35,6 +35,8 @@
 ```
 #### 必应背景图片地址
 ```  
+    https://api.bingdou.net/pic/bing/
+    // 或者
     https://www.bing.com/th?id=OHR.Havasupai_ROW0645721076_1920x1080.jpg&rf=LaDigue_1920x1080.jpg
 ```
 #### 图片占位符生成地址
