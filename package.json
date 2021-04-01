@@ -1,0 +1,22 @@
+{
+  "name": "diaoqi-plugin",
+  "version": "1.0.0",
+  "description": "小工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dq77/plug-in.git"
+  },
+  "author": "刁琪",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dq77/plug-in/issues"
+  },
+  "homepage": "https://github.com/dq77/plug-in#readme",
+  "dependencies": {
+    "xlsx": "^0.16.9"
+  }
+}
