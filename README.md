@@ -1,30 +1,40 @@
-### 各种插件
+### 方便调用的小工具
 --------
 
-### format-date
+### dateFormat
 #### 将日期格式化的插件，由Date类型的对象调用
 ```  
-    var date1 = new Date("sth").format("yyyy-MM-dd");
+    const dateStr = dqPlugin.dateFormat(new Date(), "yyyy-MM-dd");
 ```
-#### 其他参数请参阅[详情页](https://github.com/dq77/plug-in/tree/master/format-date)
 --------
 
 ### regExp
 #### 常用的正则表达式
 ```  
-    if (regExpConfig.mobile.test('15545457878')) {
-      console.log('手机号码不正确')
+    if (!dqPlugin.regExp.mobile.test('15545457878')) {
+        console.log('手机号码不正确')
     }
 ```
 --------
 
-### 浏览器类型
+### getBrowserType
 #### 常用浏览器类型判断
 ```  
-    brType = getBrowserType();
+    brType = dqPlugin.getBrowserType();
     if ( !brType.mobile ) {
         console.log('PC端')
     }
+```
+--------
+
+### exportExcel
+#### 导入导出excel
+```  
+    // 导出
+    dqPlugin.exportExcel(list,'订单.xlsx')
+
+    // 导入
+    readXlsxFile(file, readFile)
 ```
 --------
 
@@ -45,14 +55,3 @@
 ```
 --------
 
-### 导入导出Excel
-#### 基于xlsx.js
-```  
-    // 导出
-    exportExcel(json,'订单.xlsx')
-
-    // 导入
-    readWorkbookFromLocalFile( file, this.readFile )
-```
-#### 使用方法请参阅[详情页](https://github.com/dq77/plug-in/tree/master/xlsx)
---------
