@@ -207,6 +207,22 @@ const readXlsxFile = (file, callback) => {
   reader.readAsBinaryString(file);
 }
 
+/**
+ * 移动端等比例缩放布局,1rem:100px比例
+ * @param {Number} designWidth 设计稿宽度，默认750
+ *
+ * **示例代码：**
+ *
+ ```javascript
+    dqPlugin.remLayout()
+ ```
+ */
+const remLayout = (designWidth = 750) => {
+  const docEl = document.documentElement
+  docEl.style.fontSize = 100 * (docEl.clientWidth / designWidth) + 'px'
+  window.addEventListener('resize', () => {docEl.style.fontSize = 100 * (docEl.clientWidth / designWidth) + 'px'}, false);
+}
+
 
 export default{
   dateFormat,
@@ -214,4 +230,5 @@ export default{
   regExp,
   exportExcel,
   readXlsxFile,
+  remLayout,
 }
