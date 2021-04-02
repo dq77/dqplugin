@@ -1,15 +1,6 @@
 import * as XLSX from 'xlsx'
 
 
-
-/**
- * 将日期格式化的方法
- * @param {Date} date 需转换的日期对象
- * @param {String} format 接收的参数为字符串，例如 "yyyy.MM.dd"  "yyyy-dd-MM"
- * @return {String} 返回的结果为字符串，例如 "2017.08.31"  "2018-16-01"
- * @protected
- * @final
- */
 const dateFormat = (date, format) => {
   var o = {
     "M+" : date.getMonth()+1, //month
@@ -29,21 +20,7 @@ const dateFormat = (date, format) => {
   return format;
 }
 
-/**
- * 客户端浏览器信息
- * 
- ```javascript
- * {
- *    trident: false, // IE内核
- *    webKit: true, // 苹果、谷歌内核
- *    mobile: true, // 是否为移动终端
- *    android: false, // android终端或者uc浏览器
- *    iPhone: true, // 是否为iPhone或者QQHD浏览器
- *    weixin: false, // 微信内置浏览器
- *    alipay: false // 支付宝内置浏览器
- * }
- ```
- */
+
 const getBrowserType = () => {
   // 客户端浏览器信息
   var u = navigator.userAgent;
@@ -65,17 +42,7 @@ const getBrowserType = () => {
   }
 }
 
-/**
- * 常用正则判断
- *
- * **示例代码：**
- *
- ```javascript
-  if (!dqPlugin.regExp.mobile.test('15545457878')) {
-    console.log('手机号码不正确')
-  }
-  ```
-  */
+
 const regExp = {
   IDcard: /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/, // 身份证
   mobile: /^1([3|4|5|7|8|])\d{9}$/, // 手机号码
@@ -93,47 +60,17 @@ const regExp = {
   isNormalEncode: /^(\w||[\u4e00-\u9fa5]){0,}$/, // 是否为非特殊字符（包括数字字母下划线中文）
   isTableName: /^[a-zA-Z][A-Za-z0-9#$_-]{0,29}$/, // 表名
   isInt: /^-?\d+$/, // 整数
-  isText_30: /^(\W|\w{1}){0,30}$/, // 匹配30个字符，字符可以使字母、数字、下划线、非字母，一个汉字算1个字符
-  isText_50: /^(\W|\w{1}){0,50}$/, // 匹配50个字符，字符可以使字母、数字、下划线、非字母，一个汉字算1个字符
-  isText_20: /^(\W|\w{1}){0,20}$/, // 匹配20个字符，字符可以使字母、数字、下划线、非字母，一个汉字算1个字符
-  isText_100: /^(\W|\w{1}){0,100}$/, // 匹配100个字符，字符可以使字母、数字、下划线、非字母，一个汉字算1个字符
-  isText_250: /^(\W|\w{1}){0,250}$/, // 匹配250个字符，字符可以使字母、数字、下划线、非字母，一个汉字算1个字符
+  isText_30: /^(\W|\w{1}){0,30}$/, // 匹配30个字符，字符可以使字母、数字、下划线、非字母，一个汉字算1个字符符
   isNotChina: /^[^\u4e00-\u9fa5]{0,}$/, // 不为中文  
   IDcard: /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/, // 身份证
-  IDcardAndAdmin: /^(([1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X))|(admin))$/, // 身份证或者是admin账号
-  IDcardTrim: /^\s*(([1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3})|([1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X))|(admin))\s*$/, // 身份证
-  num1: /^[1-9]*$/, // 数字
   imgType: /image\/(png|jpg|jpeg|gif)$/, // 上传图片类型
   isNozeroNumber: /^\+?[1-9]\d*$/, // 大于零的正整数
   float: /^\d+(\.?|(\.\d+)?)$/, // 匹配正整数或者小数 或者0.这个特殊值
   isName: /^[u4e00-u9fa5·0-9A-z]+$/, // 验证姓名
   Email: /^([A-Za-z0-9_\-\.\u4e00-\u9fa5])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/, // 邮箱验证
-  specialStrFilterReg: /[^A-Za-z0-9_\-\u4e00-\u9fa5\~\`\!\@\#\$\%\^\&\*\(\)\-\+\=\[\{\]\}\;\:\,\.\?\<\>\/\·\~\！\￥\……\&\*\（\）\——\「\【\】\」\|\、\|\；\’\：\“\《\》\？\，\。\、\\\'\"]+/g, // 过滤表情包和特殊字符
 };
 
 
-/**
- * 导出数据为xlsx格式文件
- * @param {Array} list 需保存的列表
- * @param {String} fileName 文件名，如"订单.xlsx"
- *
- * **示例代码：**
- *
- ```javascript
-    let list = [
-     {
-       '订单号' :123,
-       '订单金额' :'15元',
-       '数量' :'3',
-     },{
-       '订单号' :456,
-       '订单金额' :'8元',
-       '数量' :'28',
-     }
-    ]
-    dqPlugin.exportExcel(list,'订单.xlsx')
- ```
- */
 const exportExcel = (list, fileName = 'download.xlsx') => {
   const type = 'xlsx'//定义导出文件的格式
   var tmpDown;//导出的内容
@@ -223,16 +160,7 @@ const readXlsxFile = (file) => {
   })
 }
 
-/**
- * 移动端等比例缩放布局,1rem:100px比例
- * @param {Number} designWidth 设计稿宽度，默认750
- *
- * **示例代码：**
- *
- ```javascript
-    dqPlugin.remLayout()
- ```
- */
+
 const remLayout = (designWidth = 750) => {
   const docEl = document.documentElement
   docEl.style.fontSize = 100 * (docEl.clientWidth / designWidth) + 'px'
