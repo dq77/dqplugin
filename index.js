@@ -162,9 +162,13 @@ const readXlsxFile = (file) => {
 
 
 const remLayout = (designWidth = 750) => {
+  resetFont(designWidth)
+  window.addEventListener('resize', () => { resetFont(designWidth) }, false);
+}
+function resetFont(designWidth) {
   const docEl = document.documentElement
-  docEl.style.fontSize = 100 * (docEl.clientWidth / designWidth) + 'px'
-  window.addEventListener('resize', () => {docEl.style.fontSize = 100 * (docEl.clientWidth / designWidth) + 'px'}, false);
+  const clientWidth = (docEl.clientWidth > designWidth) ? designWidth : docEl.clientWidth
+  docEl.style.fontSize = 100 * (clientWidth / designWidth) + 'px'
 }
 
 

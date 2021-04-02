@@ -118,7 +118,7 @@ export function readXlsxFile(file: File): Promise<T>;
 
 
 /**
- * 移动端等比例缩放布局,1rem:100px比例
+ * 移动端等比例缩放布局,1rem:100px比例，最多放大至设计稿宽度
  * @param {Number} designWidth 设计稿宽度，默认750
  *
  * **示例代码：**
