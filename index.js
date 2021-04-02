@@ -135,20 +135,6 @@ function getCharCol(n){
 }
 
 
-/**
- * 导入xlsx文件并转换为list，支持Promise
- * @param {File} file 上传的文件
- *
- * **示例代码：**
- *
- ```javascript
-    const workbook = await dqPlugin.readXlsxFile(file)
-    let sheet = workbook.Sheets[workbook.SheetNames[0]]
-    for ( let key in sheet ) {
-      console.log(sheet[key].v || null)
-    }
- ```
- */
 const readXlsxFile = (file) => {
   return new Promise((resolve, reject) => {
     var reader = new FileReader();
