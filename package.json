@@ -1,6 +1,6 @@
 {
   "name": "dqplugin",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "小工具",
   "main": "lib/index.js",
   "scripts": {
