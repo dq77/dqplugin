@@ -146,7 +146,7 @@ const exportExcel = (list, fileName = 'download.xlsx') => {
   }
   var tmpdata = [];//用来保存转换好的json 
   
-  json.map((v, i) => keyMap.map((k, j) => Object.assign({}, {
+  list.map((v, i) => keyMap.map((k, j) => Object.assign({}, {
     v: v[k],
     position: (j > 25 ? getCharCol(j) : String.fromCharCode(65 + j)) + (i + 1)
   }))).reduce((prev, next) => prev.concat(next)).forEach((v, i) => tmpdata[v.position] = {
@@ -179,32 +179,48 @@ const exportExcel = (list, fileName = 'download.xlsx') => {
     URL.revokeObjectURL(tmpDown); //用URL.revokeObjectURL()来释放这个object URL
   }, 100);
 }
+function s2ab(s){ //字符串转字符流
+  var buf = new ArrayBuffer(s.length);
+  var view = new Uint8Array(buf);
+  for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+  return buf;
+}
+function getCharCol(n){
+  let temCol = '',
+  s = '',
+  m = 0
+  while (n > 0) {
+    m = n % 26 + 1
+    s = String.fromCharCode(m + 64) + s
+    n = (n - m) / 26
+  }
+  return s
+}
 
 
 /**
- * 导入xlsx文件并转换为list
+ * 导入xlsx文件并转换为list，支持Promise
  * @param {File} file 上传的文件
- * @param {Function} callback 解析后的回调
  *
  * **示例代码：**
  *
  ```javascript
-    readFile = (workbook) => {
-      let sheet = workbook.Sheets[workbook.SheetNames[0]]
-      for ( let key in sheet ) {
-        sheet[key].v ? console.log(sheet[key].v) : null
-      }
+    const workbook = await dqPlugin.readXlsxFile(file)
+    let sheet = workbook.Sheets[workbook.SheetNames[0]]
+    for ( let key in sheet ) {
+      console.log(sheet[key].v || null)
     }
-    dqPlugin.readXlsxFile(file, readFile)
  ```
  */
-const readXlsxFile = (file, callback) => {
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var data = e.target.result;
-    callback? callback( XLSX.read(data, {type: 'binary'})):''
-  };
-  reader.readAsBinaryString(file);
+const readXlsxFile = (file) => {
+  return new Promise((resolve, reject) => {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var data = e.target.result;
+      resolve(XLSX.read(data, {type: 'binary'}))
+    };
+    reader.readAsBinaryString(file);
+  })
 }
 
 /**
