@@ -62,3 +62,7 @@
 ```
 --------
 
+编译过程
+```  
+babel index.js --out-dir lib
+```
