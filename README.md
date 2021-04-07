@@ -1,16 +1,19 @@
 ### 方便调用的小工具
+### 使用方式
+`npm install dqplugin --save`
+
 --------
 
 ### dateFormat
-#### 将日期格式化的插件，由Date类型的对象调用
-```  
+#### 将日期格式化的插件
+```js
     const dateStr = dqPlugin.dateFormat(new Date(), "yyyy-MM-dd");
 ```
 --------
 
 ### regExp
 #### 常用的正则表达式
-```  
+```js
     if (!dqPlugin.regExp.mobile.test('15545457878')) {
         console.log('手机号码不正确')
     }
@@ -19,7 +22,7 @@
 
 ### getBrowserType
 #### 常用浏览器类型判断
-```  
+```js
     brType = dqPlugin.getBrowserType();
     if ( !brType.mobile ) {
         console.log('PC端')
@@ -29,7 +32,7 @@
 
 ### exportExcel
 #### 导入导出excel
-```  
+```js
     // 导出
     dqPlugin.exportExcel(list,'订单.xlsx')
 
@@ -40,7 +43,7 @@
 
 ### remLayout
 #### 移动端等比例缩放布局,1rem:100px比例,参数为设计稿宽度,默认750
-```  
+```js
     dqPlugin.remLayout()
 ```
 --------
@@ -62,7 +65,7 @@
 ```
 --------
 
-编译过程
-```  
+## 本项目编译过程
+```
 babel index.js --out-dir lib
 ```
