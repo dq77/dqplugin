@@ -37,7 +37,12 @@
     dqPlugin.exportExcel(list,'订单.xlsx')
 
     // 导入
-    readXlsxFile(file, readFile)
+    dqPlugin.readXlsxFile(file).then(workbook => {
+        let sheet = workbook.Sheets[workbook.SheetNames[0]]
+        for ( let key in sheet ) {
+            sheet[key].v ? console.log(sheet[key].v) : null
+        }
+    })
 ```
 --------
 
